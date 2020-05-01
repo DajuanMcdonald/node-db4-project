@@ -1,8 +1,13 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable("instruction", (tbl) => {
-        tbl.increments("id")
-        tbl.text("steps")
+        tbl.increments()
+        tbl.integer("instruc_id")
+        .references("id")
+        .inTable("recipe")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        tbl.text("directions")
     })
   
 };
